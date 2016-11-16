@@ -1,0 +1,4 @@
+/.gitignore
+*.blend1
+Render/
+.*.swp
