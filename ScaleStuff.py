@@ -7,7 +7,11 @@ shells = [obj for obj in bpy.data.objects if obj.name.startswith("Shell")]
 #Iterate through all objects, going into and out of edit mode
 for obj in shells:
      bpy.context.scene.objects.active = obj
+     #Go into edit mode:
      bpy.ops.object.mode_set(mode='EDIT', toggle=False)
+     #Reveal all hidden vertices, edges and faces:
      bpy.ops.mesh.reveal()
+     #Deselect all vertices:
      bpy.ops.mesh.select_all(action='DESELECT')
+     #Go out of edit mode:
      bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
