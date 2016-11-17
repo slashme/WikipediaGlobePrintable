@@ -9,5 +9,5 @@ for obj in shells:
      bpy.context.scene.objects.active = obj
      bpy.ops.object.mode_set(mode='EDIT', toggle=False)
      bpy.ops.mesh.reveal()
-     bpy.ops.mesh.select_all(action='SELECT')
+     bpy.ops.mesh.select_all(action='DESELECT')
      bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
