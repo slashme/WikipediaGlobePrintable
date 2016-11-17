@@ -1,17 +1,16 @@
-import bpy
+#Scaling factors - 0 is no change; 1 is the center of the ball; 0.045 takes the letters to about the thickness of the original shell.
+letterscale=0.02
+shellscale=0.045
 
 #Grab all objects called Shell*
 shells = [obj for obj in bpy.data.objects if obj.name.startswith("Shell")]
 
-#From http://blender.stackexchange.com/questions/2638/run-an-edit-mode-operator-on-every-object-in-the-scene
-#Iterate through all objects, going into and out of edit mode
+#Iterate through all objects, scaling all vertices in LetterInner:
 for obj in shells:
-     bpy.context.scene.objects.active = obj
-     #Go into edit mode:
-     bpy.ops.object.mode_set(mode='EDIT', toggle=False)
-     #Reveal all hidden vertices, edges and faces:
-     bpy.ops.mesh.reveal()
-     #Deselect all vertices:
-     bpy.ops.mesh.select_all(action='DESELECT')
-     #Go out of edit mode:
-     bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+    for v in obj.data.vertices:
+        for vertGroup in v.groups:
+            if vertGroup.group == obj.vertex_groups['LetterInner'].index:
+                v.co = v.co.lerp((0,0,0),letterscale)
+            if vertGroup.group == obj.vertex_groups['BI'].index or \
+                    vertGroup.group == obj.vertex_groups['BE'].index:
+                v.co = v.co.lerp((0,0,0),shellscale)
