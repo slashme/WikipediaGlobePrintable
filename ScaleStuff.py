@@ -1,5 +1,5 @@
 #Scaling factors - 0 is no change; 1 is the center of the ball; 0.045 takes the letters to about the thickness of the original shell.
-letterscale=0.02
+letterscale=0.015
 shellscale=0.045
 
 #Grab all objects called Shell*
